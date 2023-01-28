@@ -1,0 +1,13 @@
+{
+  "include": ["src"],
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "ES6",
+    "strict": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "extends": "@tsconfig/recommended/tsconfig.json"
+}
