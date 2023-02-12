@@ -75,4 +75,66 @@ export class BinarySearchTree implements IBinarySearchTree {
       }
     }
   }
+
+  BFS() {
+    let node: IBinarySearchTreeNode | null | undefined = this.root;
+    let data = [],
+      queue = [];
+
+    queue.push(node);
+
+    while (queue.length) {
+      node = queue.shift();
+      data.push(node?.value);
+      if (node?.left) queue.push(node.left);
+      if (node?.right) queue.push(node.right);
+    }
+
+    return data;
+  }
+
+  DFSPreOrder() {
+    const visited: number[] = [];
+    let node: IBinarySearchTreeNode | null | undefined = this.root;
+
+    const traverse = (newNode: IBinarySearchTreeNode) => {
+      visited.push(newNode.value);
+      if (newNode.left) traverse(newNode.left);
+      if (newNode.right) traverse(newNode.right);
+    };
+
+    if (node) traverse(node);
+
+    return visited;
+  }
+
+  DFSPostOrder() {
+    const visited: number[] = [];
+    let node: IBinarySearchTreeNode | null | undefined = this.root;
+
+    const traverse = (newNode: IBinarySearchTreeNode) => {
+      if (newNode.left) traverse(newNode.left);
+      if (newNode.right) traverse(newNode.right);
+      visited.push(newNode.value);
+    };
+
+    if (node) traverse(node);
+
+    return visited;
+  }
+
+  DFSInOrder() {
+    const visited: number[] = [];
+    let node: IBinarySearchTreeNode | null | undefined = this.root;
+
+    const traverse = (newNode: IBinarySearchTreeNode) => {
+      if (newNode.left) traverse(newNode.left);
+      visited.push(newNode.value);
+      if (newNode.right) traverse(newNode.right);
+    };
+
+    if (node) traverse(node);
+
+    return visited;
+  }
 }
