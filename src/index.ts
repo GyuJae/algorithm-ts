@@ -1,11 +1,21 @@
-import { PriorityQueue } from './priority-queue';
+import { Graph } from './graph';
 
-const queue = new PriorityQueue();
+const graph = new Graph();
 
-queue.enqueue('감기', 3);
-queue.enqueue('머리 총 맞은 사람', 13);
-queue.enqueue('지우한테 맞기', 1);
-queue.enqueue('우미한테 맞기', 30);
-queue.dequeue();
+graph.addVertex('A');
+graph.addVertex('B');
+graph.addVertex('C');
+graph.addVertex('D');
+graph.addVertex('E');
+graph.addVertex('F');
 
-console.log(queue.values);
+graph.addEdge('A', 'B');
+graph.addEdge('A', 'C');
+graph.addEdge('B', 'D');
+graph.addEdge('C', 'E');
+graph.addEdge('D', 'E');
+graph.addEdge('D', 'F');
+graph.addEdge('E', 'F');
+
+console.log(graph.breadthFirst('A'));
+console.log(graph);
