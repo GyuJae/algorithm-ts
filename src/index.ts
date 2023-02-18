@@ -1,12 +1,14 @@
-import { BinarySearchTree } from './binary-search-tree';
+import { MaxBinaryHeap } from './heaps';
 
-const tree = new BinarySearchTree();
+const heaps = new MaxBinaryHeap();
 
-tree.insert(10);
-tree.insert(6);
-tree.insert(15);
-tree.insert(3);
-tree.insert(8);
-tree.insert(20);
+heaps.insert(41);
+heaps.insert(39);
+heaps.insert(33);
+heaps.insert(18);
+heaps.insert(27);
+heaps.insert(12);
 
-console.log(tree.DFSInOrder());
+heaps.extractMax();
+
+console.log(heaps);
