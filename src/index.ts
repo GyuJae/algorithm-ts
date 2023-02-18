@@ -1,14 +1,11 @@
-import { MaxBinaryHeap } from './heaps';
+import { PriorityQueue } from './priority-queue';
 
-const heaps = new MaxBinaryHeap();
+const queue = new PriorityQueue();
 
-heaps.insert(41);
-heaps.insert(39);
-heaps.insert(33);
-heaps.insert(18);
-heaps.insert(27);
-heaps.insert(12);
+queue.enqueue('감기', 3);
+queue.enqueue('머리 총 맞은 사람', 13);
+queue.enqueue('지우한테 맞기', 1);
+queue.enqueue('우미한테 맞기', 30);
+queue.dequeue();
 
-heaps.extractMax();
-
-console.log(heaps);
+console.log(queue.values);
