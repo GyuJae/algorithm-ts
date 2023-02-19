@@ -36,22 +36,22 @@ export class BinarySearchTree implements IBinarySearchTree {
     let current = this.root;
 
     while (true) {
-      if (current.value === newNode.value) return undefined;
+      if (current.value === newNode.value) return;
       if (current.value > newNode.value) {
-        if (!current.left) {
+        if (current.left) {
+          current = current.left;
+        } else {
           current.left = newNode;
           return this;
-        } else {
-          current = current.left;
         }
       }
 
       if (current.value < newNode.value) {
-        if (!current.right) {
+        if (current.right) {
+          current = current.right;
+        } else {
           current.right = newNode;
           return this;
-        } else {
-          current = current.right;
         }
       }
     }
@@ -78,12 +78,12 @@ export class BinarySearchTree implements IBinarySearchTree {
 
   BFS() {
     let node: IBinarySearchTreeNode | null | undefined = this.root;
-    let data = [],
+    const data = [],
       queue = [];
 
     queue.push(node);
 
-    while (queue.length) {
+    while (queue.length > 0) {
       node = queue.shift();
       data.push(node?.value);
       if (node?.left) queue.push(node.left);
@@ -95,7 +95,7 @@ export class BinarySearchTree implements IBinarySearchTree {
 
   DFSPreOrder() {
     const visited: number[] = [];
-    let node: IBinarySearchTreeNode | null | undefined = this.root;
+    const node: IBinarySearchTreeNode | null | undefined = this.root;
 
     const traverse = (newNode: IBinarySearchTreeNode) => {
       visited.push(newNode.value);
@@ -110,7 +110,7 @@ export class BinarySearchTree implements IBinarySearchTree {
 
   DFSPostOrder() {
     const visited: number[] = [];
-    let node: IBinarySearchTreeNode | null | undefined = this.root;
+    const node: IBinarySearchTreeNode | null | undefined = this.root;
 
     const traverse = (newNode: IBinarySearchTreeNode) => {
       if (newNode.left) traverse(newNode.left);
@@ -125,7 +125,7 @@ export class BinarySearchTree implements IBinarySearchTree {
 
   DFSInOrder() {
     const visited: number[] = [];
-    let node: IBinarySearchTreeNode | null | undefined = this.root;
+    const node: IBinarySearchTreeNode | null | undefined = this.root;
 
     const traverse = (newNode: IBinarySearchTreeNode) => {
       if (newNode.left) traverse(newNode.left);

@@ -1,5 +1,5 @@
 interface IDoublyNode {
-  val: string;
+  value: string;
   next: IDoublyNode | null;
   prev: IDoublyNode | null;
 }
@@ -14,7 +14,7 @@ class DoublyNode implements IDoublyNode {
   next: IDoublyNode | null;
   prev: IDoublyNode | null;
 
-  constructor(public val: string) {
+  constructor(public value: string) {
     this.next = null;
     this.prev = null;
   }
@@ -31,8 +31,8 @@ export class DoublyLinkedList implements IDoublyLinkedList {
     this.length = 0;
   }
 
-  push(val: string) {
-    const newNode = new DoublyNode(val);
+  push(value: string) {
+    const newNode = new DoublyNode(value);
 
     if (!this.head || !this.tail) {
       this.head = newNode;
@@ -57,8 +57,7 @@ export class DoublyLinkedList implements IDoublyLinkedList {
       return poppedNode;
     }
 
-    if (!this.head || !this.tail || !this.tail.prev || !poppedNode)
-      return undefined;
+    if (!this.head || !this.tail || !this.tail.prev || !poppedNode) return;
 
     this.tail.prev.next = null;
     this.tail = this.tail.prev;
@@ -77,7 +76,7 @@ export class DoublyLinkedList implements IDoublyLinkedList {
       return shiftedNode;
     }
 
-    if (!this.head || !this.head.next || !shiftedNode) return undefined;
+    if (!this.head || !this.head.next || !shiftedNode) return;
 
     this.head.next.prev = null;
     this.head = this.head.next;
@@ -87,12 +86,12 @@ export class DoublyLinkedList implements IDoublyLinkedList {
     return shiftedNode;
   }
 
-  unshift(val: string) {
+  unshift(value: string) {
     if (this.length === 0 || !this.head || !this.tail) {
-      return this.push(val);
+      return this.push(value);
     }
 
-    const newNode = new DoublyNode(val);
+    const newNode = new DoublyNode(value);
     newNode.next = this.head;
     this.head.prev = newNode;
     this.head = newNode;
@@ -102,7 +101,7 @@ export class DoublyLinkedList implements IDoublyLinkedList {
   }
 
   get(index: number) {
-    if (index < 0 || index >= this.length) return undefined;
+    if (index < 0 || index >= this.length) return;
 
     if (index <= this.length / 2) {
       let counter = 0;
@@ -125,26 +124,26 @@ export class DoublyLinkedList implements IDoublyLinkedList {
     }
   }
 
-  set(index: number, val: string) {
+  set(index: number, value: string) {
     const targetNode = this.get(index);
     if (!targetNode) return false;
-    targetNode.val = val;
+    targetNode.value = value;
 
     return true;
   }
 
-  insert(index: number, val: string) {
+  insert(index: number, value: string) {
     if (index < 0 || index > this.length) return false;
     if (index === 0) {
-      this.unshift(val);
+      this.unshift(value);
       return true;
     }
     if (index === this.length) {
-      this.push(val);
+      this.push(value);
       return true;
     }
 
-    const newNode = new DoublyNode(val);
+    const newNode = new DoublyNode(value);
     const beforeNode = this.get(index - 1)!;
     const afterNode = beforeNode.next!;
     newNode.prev = beforeNode;
@@ -156,7 +155,7 @@ export class DoublyLinkedList implements IDoublyLinkedList {
   }
 
   remove(index: number) {
-    if (index < 0 || index >= this.length) return undefined;
+    if (index < 0 || index >= this.length) return;
 
     if (index === 0) return this.shift();
 

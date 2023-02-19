@@ -22,7 +22,7 @@ export class Graph {
   removeEdge(v1: string, v2: string) {
     if (!this.adjacencyList[v1] || !this.adjacencyList[v2]) return;
     this.adjacencyList[v1] = this.adjacencyList[v1].filter(
-      (item) => item !== v2
+      (item) => item !== v2,
     );
   }
 
@@ -65,7 +65,7 @@ export class Graph {
     const stack = [startVertex];
     const visited: Record<string, boolean> = {};
 
-    while (stack.length !== 0) {
+    while (stack.length > 0) {
       const vertex = stack.pop()!;
 
       if (visited[vertex]) continue;
@@ -73,9 +73,9 @@ export class Graph {
       visited[vertex] = true;
       result.push(vertex);
 
-      this.adjacencyList[vertex].forEach((item) => {
+      for (const item of this.adjacencyList[vertex]) {
         if (!visited[item]) stack.push(item);
-      });
+      }
     }
 
     return result;
@@ -91,12 +91,12 @@ export class Graph {
       const vertex = queue.shift()!;
       result.push(vertex);
 
-      this.adjacencyList[vertex].forEach((item) => {
+      for (const item of this.adjacencyList[vertex]) {
         if (!visited[item]) {
           visited[item] = true;
           queue.push(item);
         }
-      });
+      }
     }
 
     return result;

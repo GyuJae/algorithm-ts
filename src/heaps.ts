@@ -38,26 +38,26 @@ export class MaxBinaryHeap {
     this.values[0] = this.values[this.values.length - 1];
     this.values.pop();
 
-    let currentIdx = 0;
+    let currentIndex = 0;
 
-    while (currentIdx < this.values.length - 1) {
-      const leftIdx = currentIdx * 2 + 1;
-      const rightIdx = currentIdx * 2 + 2;
+    while (currentIndex < this.values.length - 1) {
+      const leftIndex = currentIndex * 2 + 1;
+      const rightIndex = currentIndex * 2 + 2;
 
-      if (this.values[leftIdx] > this.values[rightIdx]) {
-        if (this.values[currentIdx] < this.values[leftIdx]) {
-          const leftValue = this.values[leftIdx];
-          this.values[leftIdx] = this.values[currentIdx];
-          this.values[currentIdx] = leftValue;
+      if (this.values[leftIndex] > this.values[rightIndex]) {
+        if (this.values[currentIndex] < this.values[leftIndex]) {
+          const leftValue = this.values[leftIndex];
+          this.values[leftIndex] = this.values[currentIndex];
+          this.values[currentIndex] = leftValue;
         }
-        currentIdx = leftIdx;
+        currentIndex = leftIndex;
       } else {
-        if (this.values[currentIdx] < this.values[rightIdx]) {
-          const rightValue = this.values[rightIdx];
-          this.values[rightIdx] = this.values[currentIdx];
-          this.values[currentIdx] = rightValue;
+        if (this.values[currentIndex] < this.values[rightIndex]) {
+          const rightValue = this.values[rightIndex];
+          this.values[rightIndex] = this.values[currentIndex];
+          this.values[currentIndex] = rightValue;
         }
-        currentIdx = rightIdx;
+        currentIndex = rightIndex;
       }
     }
 

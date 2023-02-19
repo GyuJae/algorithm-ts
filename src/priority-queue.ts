@@ -1,5 +1,5 @@
 class PriorityQueueNode {
-  constructor(public val: string, public priority: number) {}
+  constructor(public value: string, public priority: number) {}
 }
 
 export class PriorityQueue {
@@ -7,21 +7,21 @@ export class PriorityQueue {
   constructor() {
     this.values = [];
   }
-  enqueue(val: string, priority: number) {
-    let newNode = new PriorityQueueNode(val, priority);
+  enqueue(value: string, priority: number) {
+    const newNode = new PriorityQueueNode(value, priority);
     this.values.push(newNode);
     this.bubbleUp();
   }
   bubbleUp() {
-    let idx = this.values.length - 1;
-    const element = this.values[idx];
-    while (idx > 0) {
-      let parentIdx = Math.floor((idx - 1) / 2);
-      let parent = this.values[parentIdx];
+    let index = this.values.length - 1;
+    const element = this.values[index];
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      const parent = this.values[parentIndex];
       if (element.priority >= parent.priority) break;
-      this.values[parentIdx] = element;
-      this.values[idx] = parent;
-      idx = parentIdx;
+      this.values[parentIndex] = element;
+      this.values[index] = parent;
+      index = parentIndex;
     }
   }
   dequeue() {
@@ -34,36 +34,36 @@ export class PriorityQueue {
     return min;
   }
   sinkDown() {
-    let idx = 0;
+    let index = 0;
     const length = this.values.length;
     const element = this.values[0];
     while (true) {
-      let leftChildIdx = 2 * idx + 1;
-      let rightChildIdx = 2 * idx + 2;
+      const leftChildIndex = 2 * index + 1;
+      const rightChildIndex = 2 * index + 2;
       let leftChild, rightChild;
       let swap = null;
 
-      if (leftChildIdx < length) {
-        leftChild = this.values[leftChildIdx];
+      if (leftChildIndex < length) {
+        leftChild = this.values[leftChildIndex];
         if (leftChild.priority < element.priority) {
-          swap = leftChildIdx;
+          swap = leftChildIndex;
         }
       }
-      if (rightChildIdx < length) {
-        rightChild = this.values[rightChildIdx];
+      if (rightChildIndex < length) {
+        rightChild = this.values[rightChildIndex];
         if (
           (swap === null && rightChild.priority < element.priority) ||
           (swap !== null &&
             leftChild &&
             rightChild.priority < leftChild.priority)
         ) {
-          swap = rightChildIdx;
+          swap = rightChildIndex;
         }
       }
       if (swap === null) break;
-      this.values[idx] = this.values[swap];
+      this.values[index] = this.values[swap];
       this.values[swap] = element;
-      idx = swap;
+      index = swap;
     }
   }
 }
